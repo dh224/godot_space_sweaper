@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cccge378rjbqq"]
+
+[ext_resource type="Script" uid="uid://dw26lyxv4aq7" path="res://Scripts/particle_explosion.gd" id="1_mipbf"]
+
+[sub_resource type="Gradient" id="Gradient_cyymp"]
+offsets = PackedFloat32Array(0, 0.281938, 0.682819, 1)
+colors = PackedColorArray(1, 0.733333, 0, 0.556863, 0.937185, 0.670483, 0.430707, 0.862745, 0.86, 0.114667, 0, 0.694118, 0.47, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mipbf"]
+gradient = SubResource("Gradient_cyymp")
+
+[sub_resource type="Curve" id="Curve_cyymp"]
+_data = [Vector2(0, 0.11236), 0.0, 0.0, 0, 0, Vector2(0.112033, 0.853933), 1.80524, 1.80524, 0, 0, Vector2(0.307054, 1), 0.0796431, 0.0796431, 0, 0, Vector2(0.6639, 0.258427), -1.35393, -1.35393, 0, 0, Vector2(1, 0.097826), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_mipbf"]
+curve = SubResource("Curve_cyymp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cyymp"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(3, 3, 1)
+emission_shape = 1
+emission_sphere_radius = 3.0
+radial_velocity_min = -10.0
+radial_velocity_max = 24.0
+gravity = Vector3(0, 50, 0)
+scale_curve = SubResource("CurveTexture_mipbf")
+color = Color(0.98, 0.98, 0.98, 1)
+color_ramp = SubResource("GradientTexture1D_mipbf")
+hue_variation_min = -0.07
+hue_variation_max = 0.06
+
+[node name="ParticleExplosion" type="Node2D"]
+script = ExtResource("1_mipbf")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 72
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+collision_base_size = 0.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_cyymp")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx0y17mpy65vb"]
+
+[ext_resource type="Script" uid="uid://88n64nsxjvsh" path="res://Scripts/meteor.gd" id="1_3vnj8"]
+[ext_resource type="Texture2D" uid="uid://bkbkykyfp6m6i" path="res://Assets/卫星2.png" id="2_3vnj8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5civa"]
+radius = 56.0
+
+[node name="Orbitor" type="Area2D" groups=["Target"]]
+script = ExtResource("1_3vnj8")
+health = 20.0
+move_speed = 150
+meteor_name = "卫星"
+crash_damage = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Target"]]
+position = Vector2(18, 11)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_3vnj8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Target"]]
+position = Vector2(-1, -2)
+shape = SubResource("CircleShape2D_5civa")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

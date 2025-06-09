@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcfm3ca6ynwtf"]
+
+[ext_resource type="Script" uid="uid://88n64nsxjvsh" path="res://Scripts/meteor.gd" id="1_1ase1"]
+[ext_resource type="Texture2D" uid="uid://byahue64i2vgs" path="res://Assets/陨石2.png" id="2_1ase1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5civa"]
+radius = 89.1403
+
+[node name="Asteroid" type="Area2D" groups=["Target"]]
+script = ExtResource("1_1ase1")
+health = 32.0
+move_speed = 80
+meteor_name = "大陨石"
+crash_damage = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Target"]]
+position = Vector2(6, -8)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_1ase1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Target"]]
+shape = SubResource("CircleShape2D_5civa")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

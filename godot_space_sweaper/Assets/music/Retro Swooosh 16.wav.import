@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://htnx5ewb7sqi"
+path="res://.godot/imported/Retro Swooosh 16.wav-9e79e6919e3bef883af91423f0754c7d.sample"
+
+[deps]
+
+source_file="res://Assets/music/Retro Swooosh 16.wav"
+dest_files=["res://.godot/imported/Retro Swooosh 16.wav-9e79e6919e3bef883af91423f0754c7d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

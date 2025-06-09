@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dinrgw3vg4hcb"]
+
+[ext_resource type="Script" uid="uid://88n64nsxjvsh" path="res://Scripts/meteor.gd" id="1_6ewtg"]
+[ext_resource type="Texture2D" uid="uid://cub88xv1orhff" path="res://Assets/陨石1.png" id="2_5ra3v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5civa"]
+radius = 72.0278
+
+[node name="Meteor" type="Area2D" groups=["Target"]]
+script = ExtResource("1_6ewtg")
+health = 12.0
+move_speed = 110
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Target"]]
+position = Vector2(3, -8)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_5ra3v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Target"]]
+shape = SubResource("CircleShape2D_5civa")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

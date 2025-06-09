@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=8 format=3 uid="uid://cb1qtyc5scjlb"]
+
+[ext_resource type="Script" uid="uid://d0v1mqls2k2yb" path="res://Scripts/resources/wave_data.gd" id="1_6l7d0"]
+[ext_resource type="PackedScene" uid="uid://dcfm3ca6ynwtf" path="res://Scenes/enemy/Asteroid.tscn" id="2_cx45b"]
+[ext_resource type="PackedScene" uid="uid://l7ey861kmoge" path="res://Scenes/enemy/nut.tscn" id="3_14trr"]
+[ext_resource type="PackedScene" uid="uid://cmrka1yv4bati" path="res://Scenes/enemy/probe.tscn" id="4_dty8n"]
+[ext_resource type="PackedScene" uid="uid://dx0y17mpy65vb" path="res://Scenes/enemy/orbiter.tscn" id="4_i7usy"]
+[ext_resource type="PackedScene" uid="uid://bxaueb8cih818" path="res://Scenes/enemy/glove.tscn" id="4_wd1wp"]
+[ext_resource type="PackedScene" uid="uid://dinrgw3vg4hcb" path="res://Scenes/enemy/meteor.tscn" id="5_m172s"]
+
+[resource]
+script = ExtResource("1_6l7d0")
+trigger_condition = 0
+trigger_time_seconds = 0.0
+track1_spawn_percentage = 0.3
+track2_spawn_percentage = 0.4
+track3_spawn_percentage = 0.5
+track1_monster_pool = Array[PackedScene]([ExtResource("2_cx45b"), ExtResource("4_i7usy"), ExtResource("4_dty8n"), ExtResource("5_m172s")])
+track2_monster_pool = Array[PackedScene]([ExtResource("3_14trr"), ExtResource("4_i7usy"), ExtResource("4_wd1wp"), ExtResource("5_m172s")])
+track3_monster_pool = Array[PackedScene]([ExtResource("3_14trr"), ExtResource("4_wd1wp")])
+wave_name = "第一波"
+total_enemies_in_wave = 30
+wave_index = 1
+spawn_interval_seconds = 2.0
+pre_wave_delay_seconds = 3.0
+simultaneous_spawns = 1
+end_condition = 0
+end_time_limit_seconds = 250.0
+metadata/_custom_type_script = "uid://d0v1mqls2k2yb"

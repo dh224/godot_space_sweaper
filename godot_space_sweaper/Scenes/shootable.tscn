@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://81osu4y22sam"]
+
+[ext_resource type="Script" uid="uid://b1iofwgmxpd6b" path="res://Scripts/shootable.gd" id="1_lbtim"]
+[ext_resource type="PackedScene" uid="uid://c7wlvplurwajn" path="res://Scenes/weapons/MachineGun.tscn" id="2_fjvy0"]
+[ext_resource type="PackedScene" uid="uid://bo8a1jylrmfwt" path="res://Scenes/weapons/RocketLauncher.tscn" id="3_8u8s6"]
+
+[node name="Shootable" type="Node2D" node_paths=PackedStringArray("weapon_slot")]
+visible = false
+script = ExtResource("1_lbtim")
+weapon_slot = [NodePath("Weapon"), NodePath("RocketLauncher")]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(97, -2)
+
+[node name="Weapon" parent="." instance=ExtResource("2_fjvy0")]
+fire_rate = 10.0
+
+[node name="RocketLauncher" parent="." instance=ExtResource("3_8u8s6")]
+fire_rate = 1.0

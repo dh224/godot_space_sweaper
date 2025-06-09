@@ -1,0 +1,108 @@
+[gd_scene load_steps=15 format=3 uid="uid://t4gmmyjdd6u8"]
+
+[ext_resource type="Texture2D" uid="uid://bjquupd4y1uvq" path="res://Assets/背景.png" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://buikuolfar5sn" path="res://Scripts/camera_2d.gd" id="1_ldgsr"]
+[ext_resource type="PackedScene" uid="uid://bycafffghaibk" path="res://Scenes/ship.tscn" id="2_qxrlw"]
+[ext_resource type="Script" uid="uid://cqq64snbvrdqh" path="res://Scripts/bgm.gd" id="5_ldgsr"]
+[ext_resource type="Script" uid="uid://8hs5kqxf7o2k" path="res://Scenes/wave_manager.gd" id="7_1l0tm"]
+[ext_resource type="Script" uid="uid://d0v1mqls2k2yb" path="res://Scripts/resources/wave_data.gd" id="7_v158k"]
+[ext_resource type="Resource" uid="uid://dvi84b1owlu8k" path="res://Scripts/wave_data/wave_1.tres" id="8_v158k"]
+[ext_resource type="Resource" uid="uid://cb1qtyc5scjlb" path="res://Scripts/wave_data/wave_2.tres" id="9_h4fw4"]
+[ext_resource type="AudioStream" uid="uid://b4bm5funqteku" path="res://Assets/music/星际怒吼.mp3" id="9_nnt18"]
+[ext_resource type="PackedScene" uid="uid://bfxe3nvos4d60" path="res://Scenes/gameover.tscn" id="11_o5yvi"]
+[ext_resource type="AudioStream" uid="uid://biildx7qluuia" path="res://Assets/music/762x54r Single Isolated WAV.wav" id="11_rku1e"]
+[ext_resource type="AudioStream" uid="uid://dni7x1gy5gh38" path="res://Assets/music/Retro Swooosh 02.wav" id="13_rfjv2"]
+[ext_resource type="AudioStream" uid="uid://htnx5ewb7sqi" path="res://Assets/music/Retro Swooosh 16.wav" id="15_nb51f"]
+[ext_resource type="AudioStream" uid="uid://bwag58gf1gcuu" path="res://Assets/music/Retro Weapon Reload Plasma 06.wav" id="16_nnt18"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("1_ldgsr")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(646, 346.76)
+scale = Vector2(0.442094, 0.318171)
+texture = ExtResource("1_ebmjs")
+
+[node name="TriLines" type="Node" parent="."]
+
+[node name="High" type="Marker2D" parent="TriLines"]
+position = Vector2(75, 240)
+gizmo_extents = 150.0
+
+[node name="Mid" type="Marker2D" parent="TriLines"]
+position = Vector2(75, 432)
+gizmo_extents = 150.0
+
+[node name="Low" type="Marker2D" parent="TriLines"]
+position = Vector2(75, 624)
+gizmo_extents = 150.0
+
+[node name="EnemySpawnPoint" type="Node" parent="."]
+
+[node name="High" type="Marker2D" parent="EnemySpawnPoint"]
+position = Vector2(1450, 240)
+gizmo_extents = 150.0
+
+[node name="Mid" type="Marker2D" parent="EnemySpawnPoint"]
+position = Vector2(1450, 432)
+gizmo_extents = 150.0
+
+[node name="Low" type="Marker2D" parent="EnemySpawnPoint"]
+position = Vector2(1450, 624)
+gizmo_extents = 150.0
+
+[node name="Ship" parent="." node_paths=PackedStringArray("camera_system", "game_over_panel", "ship_hit_sound", "ship_change_weapon_sound", "gun_shoot_sound", "rocket_shoot_sound") instance=ExtResource("2_qxrlw")]
+high_orbit_marker_path = NodePath("../TriLines/High")
+mid_orbit_marker_path = NodePath("../TriLines/Mid")
+low_orbit_marker_path = NodePath("../TriLines/Low")
+tween_transition_type = 11
+camera_system = NodePath("../Camera2D")
+game_over_panel = NodePath("../GameOverPanel")
+ship_hit_sound = NodePath("../Sound/Ship_hit")
+ship_change_weapon_sound = NodePath("../Sound/Change_weapon")
+gun_shoot_sound = NodePath("../Sound/Gun_Fire")
+rocket_shoot_sound = NodePath("../Sound/Rocket_Fire")
+
+[node name="WaveManager" type="Node2D" parent="."]
+script = ExtResource("7_1l0tm")
+waves = Array[ExtResource("7_v158k")]([ExtResource("8_v158k"), ExtResource("9_h4fw4")])
+track1_spawn_point = NodePath("../EnemySpawnPoint/High")
+track2_spawn_point = NodePath("../EnemySpawnPoint/Mid")
+track3_spawn_point = NodePath("../EnemySpawnPoint/Low")
+
+[node name="GameOverPanel" parent="." instance=ExtResource("11_o5yvi")]
+visible = false
+offset_left = 613.0
+offset_top = 319.0
+offset_right = 613.0
+offset_bottom = 319.0
+
+[node name="Sound" type="Node" parent="."]
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("9_nnt18")
+volume_db = 6.839
+autoplay = true
+script = ExtResource("5_ldgsr")
+
+[node name="Gun_Fire" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("11_rku1e")
+volume_db = -1.0
+script = ExtResource("5_ldgsr")
+
+[node name="Rocket_Fire" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("13_rfjv2")
+volume_db = -1.0
+script = ExtResource("5_ldgsr")
+
+[node name="Ship_hit" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("15_nb51f")
+volume_db = 5.0
+script = ExtResource("5_ldgsr")
+
+[node name="Change_weapon" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("16_nnt18")
+script = ExtResource("5_ldgsr")

@@ -1,0 +1,177 @@
+[gd_scene load_steps=25 format=3 uid="uid://bycafffghaibk"]
+
+[ext_resource type="Script" uid="uid://bajqntahqx7p8" path="res://Scripts/Ship.gd" id="1_4qyt1"]
+[ext_resource type="Texture2D" uid="uid://bs3b7npwrudr8" path="res://Assets/飞船1.png" id="2_cmder"]
+[ext_resource type="Texture2D" uid="uid://xhq0od7boi3s" path="res://Assets/飞机_down.png" id="3_8aq7e"]
+[ext_resource type="Texture2D" uid="uid://cq528v4u8vsx7" path="res://Assets/飞机_up.png" id="4_6ejuo"]
+[ext_resource type="PackedScene" uid="uid://81osu4y22sam" path="res://Scenes/shootable.tscn" id="5_8aq7e"]
+[ext_resource type="PackedScene" uid="uid://dqvwg8ipg68er" path="res://Scenes/bullets/rocket.tscn" id="6_cmder"]
+[ext_resource type="Script" uid="uid://dbbd4ku5wavuq" path="res://Scripts/fuel.gd" id="7_fwcnm"]
+[ext_resource type="PackedScene" uid="uid://bswqewj12s65c" path="res://Scenes/health_system.tscn" id="8_kxdp2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4qyt1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cmder")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8aq7e")
+}],
+"loop": false,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6ejuo")
+}],
+"loop": false,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qyt1"]
+size = Vector2(178, 51)
+
+[sub_resource type="Curve" id="Curve_6ejuo"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.509506, 3.16241), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_8aq7e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.91635, 0.993771), -6.20191, -6.20191, 0, 0, Vector2(0.99999, 0.744609), 0.0, 0.0, 0, 0, Vector2(1, 0.682319), 0.1003, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_8aq7e"]
+offsets = PackedFloat32Array(0, 0.658427, 1)
+colors = PackedColorArray(0.98, 0.0326667, 0, 1, 0.283673, 0.434755, 0.989246, 0.619608, 0, 0.684021, 0.785242, 0.235294)
+
+[sub_resource type="Curve" id="Curve_v2j2m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.707521, 0.615805), -0.968231, -0.968231, 0, 0, Vector2(0.86351, 0.242291), 0.0, 0.0, 0, 0, Vector2(1, 0.0264317), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_1m05r"]
+curve = SubResource("Curve_v2j2m")
+
+[sub_resource type="Gradient" id="Gradient_ssryt"]
+offsets = PackedFloat32Array(0, 0.159763, 0.609467, 0.836292, 0.996055)
+colors = PackedColorArray(0.23312, 0.618695, 1, 1, 1, 0, 0, 0.882353, 1, 0.454, 0.16, 0.941176, 0.9, 0.7128, 0.198, 0.137255, 0.9, 0.7128, 0.198, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sk2ms"]
+gradient = SubResource("Gradient_ssryt")
+
+[sub_resource type="Curve" id="Curve_fwcnm"]
+_data = [Vector2(0.442897, 0.823788), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_kxdp2"]
+curve_y = SubResource("Curve_fwcnm")
+
+[sub_resource type="Curve" id="Curve_kxdp2"]
+_limits = [0.0, 5.0, 0.0, 5.0]
+_data = [Vector2(0, 1.45838), 0.0, -0.0589189, 0, 0, Vector2(0.40367, 2.03459), 1.04617, 1.04617, 0, 0, Vector2(0.963303, 1.48649), -2.51668, -2.51668, 0, 0, Vector2(1.25688, 0), -5.06334, 0.0, 1, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_v2j2m"]
+curve = SubResource("Curve_kxdp2")
+
+[sub_resource type="Curve" id="Curve_1m05r"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0.00278551, 2.40529), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ssryt"]
+curve = SubResource("Curve_1m05r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cmder"]
+lifetime_randomness = 0.16
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.0
+initial_velocity_min = -50.0
+directional_velocity_min = -27.46
+directional_velocity_max = 21.23
+directional_velocity_curve = SubResource("CurveXYZTexture_kxdp2")
+gravity = Vector3(-98, 60, 0)
+linear_accel_min = -10.55
+linear_accel_max = 7.19
+radial_accel_min = -11.03
+radial_accel_max = -2.39
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_v2j2m")
+scale_over_velocity_curve = SubResource("CurveTexture_ssryt")
+color_ramp = SubResource("GradientTexture1D_sk2ms")
+alpha_curve = SubResource("CurveTexture_1m05r")
+
+[node name="Ship" type="Node2D" node_paths=PackedStringArray("animatedSprite", "shootable", "fuel_system", "health_system") groups=["Ship"]]
+script = ExtResource("1_4qyt1")
+high_orbit_marker_path = null
+mid_orbit_marker_path = null
+low_orbit_marker_path = null
+animatedSprite = NodePath("AnimatedSprite2D")
+tween_duration = null
+tween_transition_type = null
+tween_ease_type = null
+shootable = NodePath("Shootable")
+is_switching_line = null
+fuel_system = NodePath("FuelSystem")
+health_system = NodePath("HealthSystem")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.175, 0.175)
+sprite_frames = SubResource("SpriteFrames_4qyt1")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Ship"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(15, 7.5)
+shape = SubResource("RectangleShape2D_4qyt1")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-121, -15)
+rotation = -0.395205
+amount = 300
+lifetime = 0.22
+preprocess = 1.0
+speed_scale = 1.5
+randomness = 0.55
+lifetime_randomness = 0.41
+emission_shape = 1
+emission_sphere_radius = 6.64
+direction = Vector2(0, 0)
+gravity = Vector2(-980, 0)
+linear_accel_min = -84.19
+linear_accel_max = 95.12
+radial_accel_min = -50.0
+radial_accel_max = -40.0
+radial_accel_curve = SubResource("Curve_6ejuo")
+damping_max = 73.171
+scale_amount_min = 0.1
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_8aq7e")
+color_ramp = SubResource("Gradient_8aq7e")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-94, 23)
+amount = 300
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_cmder")
+
+[node name="Shootable" parent="." instance=ExtResource("5_8aq7e")]
+bullet_scene = ExtResource("6_cmder")
+shoot_area_path = NodePath("../FireArea")
+
+[node name="FireArea" type="Node2D" parent="."]
+position = Vector2(87, -5)
+
+[node name="FuelSystem" type="Node" parent="."]
+script = ExtResource("7_fwcnm")
+fuel_change_chanel_consumption = 1.0
+
+[node name="HealthSystem" parent="." instance=ExtResource("8_kxdp2")]

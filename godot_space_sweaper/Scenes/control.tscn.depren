@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpdw7wvftqnpo"]
+
+[ext_resource type="Texture2D" uid="uid://cp37o1bqmmvbo" path="res://Assets/FREE VERSION/Menu 1/PNG/Menu-1-01_0031__Group_.png" id="1_sjmnu"]
+[ext_resource type="Script" uid="uid://upodwjdgskbr" path="res://Scenes/GameUI.gd" id="1_vh8u0"]
+[ext_resource type="Texture2D" uid="uid://pmyag6eqb1rq" path="res://atlas.tres" id="3_vh8u0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgmvo"]
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vh8u0"]
+atlas = ExtResource("3_vh8u0")
+region = Rect2(16, 64, 16, 16)
+
+[node name="Control" type="Control" node_paths=PackedStringArray("health_bar_rect")]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 120.0
+grow_horizontal = 2
+script = ExtResource("1_vh8u0")
+health_bar_rect = NodePath("HBoxContainer/PanelContainer/HealthBar")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1280, 100)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_sjmnu")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(1280, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(120, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="HealthBarBack" type="TextureRect" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_cgmvo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthBar" type="TextureRect" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_vh8u0")
+stretch_mode = 5

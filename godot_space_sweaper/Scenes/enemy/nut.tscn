@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://l7ey861kmoge"]
+
+[ext_resource type="Script" uid="uid://88n64nsxjvsh" path="res://Scripts/meteor.gd" id="1_sfwsp"]
+[ext_resource type="Texture2D" uid="uid://3srlc80d34fk" path="res://Assets/螺母_1.png" id="2_3xv72"]
+[ext_resource type="Texture2D" uid="uid://dwfj0tuub4li7" path="res://Assets/螺母_2.png" id="3_auhv3"]
+[ext_resource type="Texture2D" uid="uid://dsc81ph3xk8m3" path="res://Assets/螺母_3.png" id="4_ce4md"]
+[ext_resource type="Texture2D" uid="uid://b5ny7b8g26c0s" path="res://Assets/螺母_4.png" id="5_cw62f"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f522c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3xv72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_auhv3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ce4md")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cw62f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5civa"]
+radius = 30.0
+
+[node name="Nut" type="Area2D" groups=["Target"]]
+script = ExtResource("1_sfwsp")
+health = 3.0
+move_speed = 250
+meteor_name = "螺母"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Target"]]
+position = Vector2(3, 5)
+scale = Vector2(0.225, 0.228)
+sprite_frames = SubResource("SpriteFrames_f522c")
+autoplay = "default"
+frame_progress = 0.939982
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Target"]]
+shape = SubResource("CircleShape2D_5civa")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

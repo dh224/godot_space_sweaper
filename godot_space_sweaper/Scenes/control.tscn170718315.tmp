@@ -1,0 +1,342 @@
+[gd_scene load_steps=23 format=3 uid="uid://cpdw7wvftqnpo"]
+
+[ext_resource type="Texture2D" uid="uid://cp37o1bqmmvbo" path="res://Assets/FREE VERSION/Menu 1/PNG/Menu-1-01_0031__Group_.png" id="1_sjmnu"]
+[ext_resource type="Script" uid="uid://upodwjdgskbr" path="res://Scenes/GameUI.gd" id="1_vh8u0"]
+[ext_resource type="Texture2D" uid="uid://4d7qfpx4ybyo" path="res://Assets/Free/07.png" id="2_cgmvo"]
+[ext_resource type="Texture2D" uid="uid://x8tnrgiegii1" path="res://Assets/动力燃料-配电.png" id="4_wpaqk"]
+[ext_resource type="Texture2D" uid="uid://srf5waxajmlf" path="res://Assets/Wenrexa Interface UI KIT #4/PNG/ProgressBar_08/BarV8_Bar.png" id="5_btyrf"]
+[ext_resource type="Texture2D" uid="uid://cklpuklw8qjhy" path="res://Assets/Wenrexa Interface UI KIT #4/PNG/ProgressBar_08/BarV8_ProgressBar.png" id="6_dqysy"]
+[ext_resource type="Texture2D" uid="uid://cub88xv1orhff" path="res://Assets/陨石1.png" id="7_1tcje"]
+[ext_resource type="Texture2D" uid="uid://byahue64i2vgs" path="res://Assets/陨石2.png" id="8_mft5f"]
+[ext_resource type="Texture2D" uid="uid://17y6d4fb3vrb" path="res://Assets/Space UI/Card X1/Card X22.png" id="8_vxodi"]
+[ext_resource type="Texture2D" uid="uid://dwfj0tuub4li7" path="res://Assets/螺母_2.png" id="9_qtfct"]
+[ext_resource type="Texture2D" uid="uid://j7j6whny7ttj" path="res://Assets/子弹.png" id="11_0yuog"]
+[ext_resource type="PackedScene" uid="uid://bfxe3nvos4d60" path="res://Scenes/gameover.tscn" id="12_0yuog"]
+[ext_resource type="AudioStream" uid="uid://dax5mdfdsapni" path="res://Assets/music/Retro Impact Punch 07.wav" id="13_gi5fq"]
+[ext_resource type="Script" uid="uid://cqq64snbvrdqh" path="res://Scripts/bgm.gd" id="14_s5sn0"]
+[ext_resource type="AudioStream" uid="uid://bl88biwwyesph" path="res://Assets/music/Retro Impact 20.wav" id="15_bbjms"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgmvo"]
+atlas = ExtResource("2_cgmvo")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vh8u0"]
+atlas = ExtResource("2_cgmvo")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dqysy"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_1tcje"]
+font_size = 24
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_fx7jt"]
+font_size = 28
+font_color = Color(0.797659, 0.797658, 0.797659, 1)
+outline_size = 4
+outline_color = Color(0.241156, 0.241156, 0.241156, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vxodi"]
+line_spacing = 5.0
+font_size = 20
+outline_size = 3
+outline_color = Color(0.160052, 0.255665, 0.51543, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mft5f"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("health_bar_rect", "gun_hit_sound", "rocket_hit_sound", "fuel_process_bar", "fuel_amount_rate_text", "fuel_consumption_rate_text", "asteroid_killed", "meteor_killed", "nut_killed", "weapon_texture")]
+z_index = 100
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 120.0
+grow_horizontal = 2
+script = ExtResource("1_vh8u0")
+health_bar_rect = NodePath("HBoxContainer/Health/HealthBar")
+gun_hit_sound = NodePath("Gun_hit")
+rocket_hit_sound = NodePath("Rocket_hit")
+fuel_process_bar = NodePath("HBoxContainer/PanelContainer2/GridContainer/TextureProgressBar")
+fuel_amount_rate_text = NodePath("HBoxContainer/PanelContainer2/GridContainer/HSplitContainer/Fuel_amount_rate")
+fuel_consumption_rate_text = NodePath("HBoxContainer/PanelContainer2/GridContainer/HSplitContainer2/HSplitContainer/Label2")
+asteroid_killed = NodePath("HBoxContainer/PanelContainer3/HSplitContainer/GridContainer/Asteroid_HSplitContainer5/Asteroid_Label")
+meteor_killed = NodePath("HBoxContainer/PanelContainer3/HSplitContainer/GridContainer/Meteor_HSplitContainer/Meteor_Label")
+nut_killed = NodePath("HBoxContainer/PanelContainer3/HSplitContainer/GridContainer/nuts_HSplitContainer6/Nuts_Label")
+weapon_texture = NodePath("HBoxContainer/boci/VSplitContainer/HealthBarBack/TextureRect")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1280, 100)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_sjmnu")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(1280, 100)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Health" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="HealthBarBack" type="TextureRect" parent="HBoxContainer/Health"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_cgmvo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthBar" type="TextureRect" parent="HBoxContainer/Health"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_vh8u0")
+stretch_mode = 5
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="HBoxContainer/PanelContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer2/GridContainer/HSplitContainer"]
+layout_mode = 2
+text = "剩余燃料："
+label_settings = SubResource("LabelSettings_dqysy")
+
+[node name="Fuel_amount_rate" type="Label" parent="HBoxContainer/PanelContainer2/GridContainer/HSplitContainer"]
+layout_mode = 2
+text = "66%"
+label_settings = SubResource("LabelSettings_dqysy")
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="HBoxContainer/PanelContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label2" type="Label" parent="HBoxContainer/PanelContainer2/GridContainer/HSplitContainer2"]
+layout_mode = 2
+text = "当前能耗："
+label_settings = SubResource("LabelSettings_dqysy")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="HBoxContainer/PanelContainer2/GridContainer/HSplitContainer2"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/PanelContainer2/GridContainer/HSplitContainer2/HSplitContainer"]
+layout_mode = 2
+text = "高"
+label_settings = SubResource("LabelSettings_1tcje")
+
+[node name="HealthBarBack" type="TextureRect" parent="HBoxContainer/PanelContainer2/GridContainer/HSplitContainer2/HSplitContainer"]
+visible = false
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("4_wpaqk")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HBoxContainer/PanelContainer2/GridContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+tooltip_text = "
+"
+value = 100.0
+texture_under = ExtResource("5_btyrf")
+texture_progress = ExtResource("6_dqysy")
+texture_progress_offset = Vector2(2, 2)
+
+[node name="PanelContainer3" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="HSplitContainer" type="HSplitContainer" parent="HBoxContainer/PanelContainer3"]
+layout_mode = 2
+dragging_enabled = false
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer3/HSplitContainer"]
+layout_mode = 2
+text = " 消
+ 灭"
+label_settings = SubResource("LabelSettings_fx7jt")
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/PanelContainer3/HSplitContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Meteor_HSplitContainer" type="HSplitContainer" parent="HBoxContainer/PanelContainer3/HSplitContainer/GridContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+dragging_enabled = false
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer3/HSplitContainer/GridContainer/Meteor_HSplitContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_1tcje")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Meteor_Label" type="Label" parent="HBoxContainer/PanelContainer3/HSplitContainer/GridContainer/Meteor_HSplitContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "× 0"
+label_settings = SubResource("LabelSettings_vxodi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Asteroid_HSplitContainer5" type="HSplitContainer" parent="HBoxContainer/PanelContainer3/HSplitContainer/GridContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+dragging_enabled = false
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer3/HSplitContainer/GridContainer/Asteroid_HSplitContainer5"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_mft5f")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Asteroid_Label" type="Label" parent="HBoxContainer/PanelContainer3/HSplitContainer/GridContainer/Asteroid_HSplitContainer5"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "× 0"
+label_settings = SubResource("LabelSettings_vxodi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="nuts_HSplitContainer6" type="HSplitContainer" parent="HBoxContainer/PanelContainer3/HSplitContainer/GridContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+dragging_enabled = false
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer3/HSplitContainer/GridContainer/nuts_HSplitContainer6"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("9_qtfct")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Nuts_Label" type="Label" parent="HBoxContainer/PanelContainer3/HSplitContainer/GridContainer/nuts_HSplitContainer6"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "× 0"
+label_settings = SubResource("LabelSettings_vxodi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="glove_HSplitContainer7" type="HSplitContainer" parent="HBoxContainer/PanelContainer3/HSplitContainer/GridContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+dragging_enabled = false
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer3/HSplitContainer/GridContainer/glove_HSplitContainer7"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_1tcje")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="glove_Label" type="Label" parent="HBoxContainer/PanelContainer3/HSplitContainer/GridContainer/glove_HSplitContainer7"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "× 0"
+label_settings = SubResource("LabelSettings_vxodi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="boci" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HBoxContainer/boci"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/boci/VSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "武器槽"
+label_settings = SubResource("LabelSettings_mft5f")
+
+[node name="HealthBarBack" type="TextureRect" parent="HBoxContainer/boci/VSplitContainer"]
+custom_minimum_size = Vector2(125, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+texture = ExtResource("8_vxodi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/boci/VSplitContainer/HealthBarBack"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_0yuog")
+expand_mode = 3
+
+[node name="boci2" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(140, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="HBoxContainer/boci2"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+text = "暂停"
+icon_alignment = 1
+expand_icon = true
+
+[node name="GameOverPanel" parent="." instance=ExtResource("12_0yuog")]
+z_index = 1000
+layout_mode = 1
+offset_top = 300.0
+offset_bottom = 300.0
+
+[node name="Gun_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_gi5fq")
+volume_db = -1.0
+script = ExtResource("14_s5sn0")
+
+[node name="Rocket_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_bbjms")
+volume_db = 2.0
+script = ExtResource("14_s5sn0")
+
+[connection signal="pressed" from="HBoxContainer/boci2/Button" to="." method="_on_button_pressed"]

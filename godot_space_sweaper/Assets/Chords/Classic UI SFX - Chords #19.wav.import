@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b6akfqnkn4t1u"
+path="res://.godot/imported/Classic UI SFX - Chords #19.wav-45b32404cbc5b882d3bd16be2c2613f5.sample"
+
+[deps]
+
+source_file="res://Assets/Chords/Classic UI SFX - Chords #19.wav"
+dest_files=["res://.godot/imported/Classic UI SFX - Chords #19.wav-45b32404cbc5b882d3bd16be2c2613f5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://t4gmmyjdd6u8"]
+
+[ext_resource type="Texture2D" uid="uid://bjquupd4y1uvq" path="res://Assets/背景.png" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://bycafffghaibk" path="res://Scenes/ship.tscn" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://dinrgw3vg4hcb" path="res://Scenes/meteor.tscn" id="4_3dryh"]
+[ext_resource type="AudioStream" uid="uid://dcfvx7vh2tcli" path="res://Assets/music/The Cosmic Crusade.mp3" id="4_wowpa"]
+[ext_resource type="Script" uid="uid://c5gi3541fu5ry" path="res://Scripts/enemy_manager.gd" id="5_wowpa"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(646, 346.76)
+scale = Vector2(0.442094, 0.318171)
+texture = ExtResource("1_ebmjs")
+
+[node name="TriLines" type="Node" parent="."]
+
+[node name="High" type="Marker2D" parent="TriLines"]
+position = Vector2(75, 120)
+gizmo_extents = 150.0
+
+[node name="Mid" type="Marker2D" parent="TriLines"]
+position = Vector2(75, 360)
+gizmo_extents = 150.0
+
+[node name="Low" type="Marker2D" parent="TriLines"]
+position = Vector2(75, 600)
+gizmo_extents = 150.0
+
+[node name="Ship" parent="." instance=ExtResource("2_qxrlw")]
+high_orbit_marker_path = NodePath("../TriLines/High")
+mid_orbit_marker_path = NodePath("../TriLines/Mid")
+low_orbit_marker_path = NodePath("../TriLines/Low")
+tween_transition_type = 11
+
+[node name="Meteor" parent="." instance=ExtResource("4_3dryh")]
+position = Vector2(1175, 329)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_wowpa")
+volume_db = 24.0
+autoplay = true
+
+[node name="EnemyManager" type="Node2D" parent="."]
+script = ExtResource("5_wowpa")
